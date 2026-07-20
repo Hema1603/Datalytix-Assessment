@@ -59,16 +59,12 @@ GROUP BY advertiser_id,grp;
 
 -- Merge Statement
 MERGE INTO silver s
-
 USING incoming i
-
 ON s.event_id=i.event_id
 
 WHEN MATCHED
 AND i.ingest_time>s.ingest_time
-
 THEN UPDATE SET *
-
+  
 WHEN NOT MATCHED
-
 THEN INSERT *;
